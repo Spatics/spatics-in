@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SPATICS™ — Sovereign Autonomous Flight Stack
 
-## Getting Started
+Official coming-soon landing page for **SPATICS Technologies** ([spatics.in](https://spatics.in)).
 
-First, run the development server:
+Engineering India’s Sovereign Autonomous Flight Stack: Indigenous UAV avionics, carbon-composite aerostructures, and Circute.ai (conversational AI-EDA).
+
+---
+
+## Tech Stack
+- **Structure**: Standalone HTML5 (`index.html`)
+- **Styling**: Tailwind CSS via CDN (`cdn.tailwindcss.com`)
+- **Icons**: Lucide Icons via CDN (`unpkg.com/lucide@latest`)
+- **Fonts**: Space Grotesk & JetBrains Mono (Google Fonts)
+- **Container Server**: Nginx Alpine (`Dockerfile` + `nginx.conf`)
+
+---
+
+## Deploying on Coolify
+
+This repository is pre-configured for zero-config deployment on **[Coolify](https://coolify.io)**:
+
+1. **New Application in Coolify**:
+   - Go to your Coolify dashboard.
+   - Click **+ Create New Resource** -> **Application**.
+   - Select **Public Repository** (or **GitHub App / Private Repository** if private).
+   - Enter your repository URL: `https://github.com/Spatics/spatics-in`
+   - Branch: `main`
+
+2. **Build Pack**:
+   - Coolify will automatically detect the **`Dockerfile`**.
+   - If prompted for Build Pack, select **Dockerfile**.
+   - Port: `80` (pre-configured).
+
+3. **Domain & SSL**:
+   - Set your domain in Coolify (e.g. `https://spatics.in` or `https://www.spatics.in`).
+   - Coolify will automatically provision free Let's Encrypt SSL certificates.
+
+4. **Deploy**:
+   - Click **Deploy**.
+   - The Nginx Alpine container will build and serve instantly with automatic caching and gzip compression.
+
+---
+
+## Local Development
+
+You can serve this page locally with any static web server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Python 3
+python3 -m http.server 3000
+
+# or Docker
+docker build -t spatics-in .
+docker run -p 3000:80 spatics-in
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Visit `http://localhost:3000/`.

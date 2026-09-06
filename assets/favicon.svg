@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#070A14"/>
+  <!-- Top Saffron Wing Ribbon -->
+  <path d="M12 24C22 14 42 13 52 23C42 19 28 20 18 29C28 23 44 24 50 31C38 27 24 29 12 24Z" fill="url(#saffronGrad)"/>
+  <!-- Center Star/Orbit Core -->
+  <circle cx="32" cy="32" r="4.5" fill="#3B82F6"/>
+  <circle cx="32" cy="32" r="8" stroke="#60A5FA" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.8"/>
+  <!-- Bottom Green Wing Ribbon -->
+  <path d="M12 40C22 50 42 51 52 41C42 45 28 44 18 35C28 41 44 40 50 33C38 37 24 35 12 40Z" fill="url(#greenGrad)"/>
+  <defs>
+    <linearGradient id="saffronGrad" x1="12" y1="18" x2="52" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF9933"/>
+      <stop offset="1" stop-color="#FF5722"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="12" y1="46" x2="52" y2="36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#138808"/>
+      <stop offset="1" stop-color="#00C853"/>
+    </linearGradient>
+  </defs>
+</svg>
