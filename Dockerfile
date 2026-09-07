@@ -13,6 +13,8 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Copy static assets and HTML
 COPY index.html /usr/share/nginx/html/
 COPY assets/ /usr/share/nginx/html/assets/
+COPY healthz /usr/share/nginx/html/healthz
+COPY health /usr/share/nginx/html/health
 
 # Expose HTTP port for Coolify reverse proxy
 EXPOSE 3000

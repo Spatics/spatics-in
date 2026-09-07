@@ -1,0 +1,15 @@
+{
+    admin off
+}
+
+:3000, :80 {
+    # Dedicated Healthcheck endpoints for Coolify
+    respond /healthz "OK" 200
+    respond /health "{\"status\":\"healthy\"}" 200
+
+    # Static files with SPA fallback
+    root * .
+    encode gzip zstd
+    file_server
+    try_files {path} /index.html
+}
