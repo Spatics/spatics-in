@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full overflow-hidden">
+<html lang="en" class="min-h-full">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>SPATICS™ | Sovereign Autonomous Flight Stack</title>
   
   <!-- SEO & Social Graph Meta Tags -->
@@ -63,10 +63,38 @@
   </script>
 
   <style>
-    /* Prevent any scrolling on fixed slide */
-    html, body {
+    /* Responsive layout: Natural scroll on mobile, locked slide on tall desktop */
+    html {
       height: 100%;
-      overflow: hidden;
+    }
+    body {
+      min-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Lock viewport only on large desktop screens with ample vertical space */
+    @media (min-width: 1024px) and (min-height: 740px) {
+      html, body {
+        height: 100%;
+        overflow-y: hidden;
+      }
+    }
+
+    /* Custom Sleek Scrollbar for smooth reading */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #08090D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(212, 154, 106, 0.25);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(212, 154, 106, 0.5);
     }
 
     /* Background Circuit Lattice Matrix */
@@ -138,54 +166,54 @@
   </style>
 </head>
 
-<body class="bg-obsidian text-slate-100 font-sans h-full w-full relative selection:bg-saffron selection:text-white antialiased overflow-hidden flex flex-col justify-between">
+<body class="bg-obsidian text-slate-100 font-sans min-h-screen w-full relative selection:bg-saffron selection:text-white antialiased flex flex-col justify-between overflow-x-hidden">
 
   <!-- Background Grid Lattice & Ambient Glows -->
   <div class="fixed inset-0 bg-lattice pointer-events-none z-0"></div>
   <div class="fixed inset-0 ambient-glow pointer-events-none z-0"></div>
   <div class="noise-layer"></div>
 
-  <!-- Single Fixed Viewport Slide -->
-  <div class="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-8 h-full flex flex-col justify-between py-4 sm:py-6">
+  <!-- Responsive Viewport Container -->
+  <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-8 min-h-screen flex flex-col justify-between py-4 sm:py-6">
 
     <!-- Top Status Indicator (No Header / No Names) -->
-    <div class="w-full flex items-center justify-between pt-1">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card/80 border border-copper-border font-mono text-[11px] text-instrument-slate backdrop-blur-md">
-        <span class="relative flex h-2 w-2">
+    <div class="w-full flex items-center justify-between pt-1 gap-2">
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-card/80 border border-copper-border font-mono text-[10px] sm:text-[11px] text-instrument-slate backdrop-blur-md">
+        <span class="relative flex h-2 w-2 flex-shrink-0">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-saffron opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-saffron"></span>
         </span>
         <span class="tracking-wider text-white/90">V1.0 INITIALIZING</span>
       </div>
 
-      <div class="inline-flex items-center gap-2 font-mono text-[11px] text-instrument-slate">
-        <span class="text-copper">BHARAT</span>
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-[11px] text-instrument-slate">
+        <span class="text-copper font-medium">BHARAT</span>
         <span class="text-copper-border">/</span>
-        <span id="live-ist-clock" class="text-white">--:--:-- IST</span>
+        <span id="live-ist-clock" class="text-white tracking-wider">--:--:-- IST</span>
       </div>
     </div>
 
     <!-- Center Hero Presentation -->
-    <div class="flex-1 flex flex-col items-center justify-center text-center my-auto py-2">
+    <div class="flex-1 flex flex-col items-center justify-center text-center my-auto py-5 sm:py-2">
 
       <!-- Sovereign Badge Pill -->
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-card/90 border border-copper-border text-[11px] font-mono text-copper mb-4 shadow-sm backdrop-blur-md">
-        <i data-lucide="shield" class="w-3.5 h-3.5 text-saffron"></i>
-        <span class="tracking-wide">Sovereign Deep-Tech • Indigenous Aerospace Systems</span>
+      <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 rounded-full bg-card/90 border border-copper-border text-[10px] sm:text-[11px] font-mono text-copper mb-3 sm:mb-4 shadow-sm backdrop-blur-md max-w-[95vw]">
+        <i data-lucide="shield" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-saffron flex-shrink-0"></i>
+        <span class="tracking-wide truncate">Sovereign Deep-Tech • Indigenous Aerospace</span>
       </div>
 
       <!-- Prominent White SPATICS Logo (No Names) -->
-      <div class="relative flex items-center justify-center mb-4">
-        <div class="absolute w-52 h-24 bg-radial from-copper/25 via-saffron/12 to-transparent blur-2xl rounded-full logo-glow-aura pointer-events-none"></div>
+      <div class="relative flex items-center justify-center mb-3 sm:mb-4">
+        <div class="absolute w-44 sm:w-52 h-20 sm:h-24 bg-radial from-copper/25 via-saffron/12 to-transparent blur-2xl rounded-full logo-glow-aura pointer-events-none"></div>
         <img 
           src="assets/images/spatics-logo-white.png" 
           alt="SPATICS Logo" 
-          class="w-48 sm:w-60 h-auto relative z-10 filter drop-shadow-[0_4px_25px_rgba(255,255,255,0.25)] hover:scale-[1.02] transition-transform duration-300 select-none"
+          class="w-40 sm:w-56 lg:w-60 h-auto relative z-10 filter drop-shadow-[0_4px_25px_rgba(255,255,255,0.25)] hover:scale-[1.02] transition-transform duration-300 select-none"
         >
       </div>
 
       <!-- Main Headline -->
-      <h1 class="text-2xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-white max-w-3xl leading-[1.18] mb-3">
+      <h1 class="text-2xl sm:text-4xl lg:text-[2.65rem] font-bold tracking-tight text-white max-w-3xl leading-[1.2] mb-3">
         Engineering India’s Sovereign <br class="hidden sm:inline" />
         <span class="bg-gradient-to-r from-saffron via-copper-light to-copper bg-clip-text text-transparent">
           Autonomous Flight Stack
@@ -193,13 +221,13 @@
       </h1>
 
       <!-- Subheadline -->
-      <p class="text-instrument-slate text-xs sm:text-sm max-w-xl font-light leading-relaxed mb-6">
+      <p class="text-instrument-slate text-xs sm:text-sm max-w-xl font-light leading-relaxed mb-5 sm:mb-6 px-1">
         Indigenous UAV avionics, carbon-composite aerostructures, and 
         <span class="text-white font-medium">Circute.ai</span>—conversational AI-EDA for mission-critical aerospace electronics.
       </p>
 
       <!-- Early Access Capture Form Card (Compact & High-Converting) -->
-      <div class="w-full max-w-md bg-card/90 border border-copper-border rounded-2xl p-4 sm:p-5 shadow-2xl backdrop-blur-xl relative overflow-hidden mb-6">
+      <div class="w-full max-w-md bg-card/90 border border-copper-border rounded-2xl p-3.5 sm:p-5 shadow-2xl backdrop-blur-xl relative overflow-hidden mb-5 sm:mb-6">
         
         <!-- Subtle Top Glow Line -->
         <div class="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-copper to-transparent"></div>
@@ -208,17 +236,17 @@
         <form id="access-form" class="flex flex-col gap-3 text-left">
           
           <!-- Segmented Control Radio Tabs -->
-          <div class="grid grid-cols-2 gap-1.5 bg-obsidian/90 p-1 rounded-lg border border-copper-border/60" role="radiogroup">
-            <label class="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md cursor-pointer text-[11px] font-mono transition-all duration-200 border border-transparent has-[:checked]:bg-card has-[:checked]:border-copper-border has-[:checked]:text-white text-instrument-slate hover:text-white select-none">
+          <div class="grid grid-cols-2 gap-1 bg-obsidian/90 p-1 rounded-lg border border-copper-border/60" role="radiogroup">
+            <label class="flex items-center justify-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-md cursor-pointer text-[10px] sm:text-[11px] font-mono transition-all duration-200 border border-transparent has-[:checked]:bg-card has-[:checked]:border-copper-border has-[:checked]:text-white text-instrument-slate hover:text-white select-none text-center">
               <input type="radio" name="domain" value="Enterprise / Defense" checked class="hidden">
-              <i data-lucide="building-2" class="w-3 h-3 text-saffron"></i>
-              <span class="font-medium">Enterprise / Defense</span>
+              <i data-lucide="building-2" class="w-3 h-3 text-saffron flex-shrink-0"></i>
+              <span class="font-medium whitespace-nowrap">Enterprise / Defense</span>
             </label>
 
-            <label class="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md cursor-pointer text-[11px] font-mono transition-all duration-200 border border-transparent has-[:checked]:bg-card has-[:checked]:border-copper-border has-[:checked]:text-white text-instrument-slate hover:text-white select-none">
+            <label class="flex items-center justify-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-md cursor-pointer text-[10px] sm:text-[11px] font-mono transition-all duration-200 border border-transparent has-[:checked]:bg-card has-[:checked]:border-copper-border has-[:checked]:text-white text-instrument-slate hover:text-white select-none text-center">
               <input type="radio" name="domain" value="UAV Engineer" class="hidden">
-              <i data-lucide="cpu" class="w-3 h-3 text-copper"></i>
-              <span class="font-medium">UAV Engineer</span>
+              <i data-lucide="cpu" class="w-3 h-3 text-copper flex-shrink-0"></i>
+              <span class="font-medium whitespace-nowrap">UAV Engineer</span>
             </label>
           </div>
 
@@ -232,14 +260,14 @@
                 name="email" 
                 required
                 placeholder="Enter work email" 
-                class="w-full bg-obsidian border border-copper-border rounded-xl pl-8 pr-3 py-2 text-xs text-white placeholder:text-instrument-dark focus:outline-none focus:border-copper focus:ring-1 focus:ring-copper/30 transition-all font-mono"
+                class="w-full bg-obsidian border border-copper-border rounded-xl pl-8 pr-3 py-2.5 sm:py-2 text-xs text-white placeholder:text-instrument-dark focus:outline-none focus:border-copper focus:ring-1 focus:ring-copper/30 transition-all font-mono"
               >
             </div>
 
             <button 
               type="submit" 
               id="submit-btn"
-              class="btn-laser-sweep px-4 py-2 rounded-xl bg-gradient-to-r from-saffron to-[#E65100] text-white font-medium text-xs transition-all duration-200 shadow-[0_2px_15px_rgba(255,111,30,0.35)] hover:shadow-[0_4px_20px_rgba(255,111,30,0.5)] flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-[0.98] border border-white/10"
+              class="btn-laser-sweep px-4 py-2.5 sm:py-2 rounded-xl bg-gradient-to-r from-saffron to-[#E65100] text-white font-medium text-xs transition-all duration-200 shadow-[0_2px_15px_rgba(255,111,30,0.35)] hover:shadow-[0_4px_20px_rgba(255,111,30,0.5)] flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-[0.98] border border-white/10"
             >
               <span>Request Access</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -249,7 +277,7 @@
           <div class="flex items-center justify-between pt-1 text-[10px] font-mono text-instrument-slate">
             <span class="flex items-center gap-1">
               <i data-lucide="lock" class="w-2.5 h-2.5 text-copper"></i>
-              NDA-grade confidentiality
+              NDA confidentiality
             </span>
             <span class="text-copper">Priority Testing Cohort</span>
           </div>
@@ -272,11 +300,11 @@
 
       </div>
 
-      <!-- 3 Feature Cards (Compact Single-Slide Grid) -->
+      <!-- 3 Feature Cards (Responsive Grid) -->
       <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-3 text-left max-w-3xl">
         
         <!-- Card 1 -->
-        <div class="spotlight-card border border-copper-border rounded-xl p-3.5 relative group overflow-hidden">
+        <div class="spotlight-card border border-copper-border rounded-xl p-3 sm:p-3.5 relative group overflow-hidden">
           <div class="flex items-center justify-between mb-2">
             <div class="w-7 h-7 rounded-lg bg-obsidian border border-copper-border flex items-center justify-center text-saffron group-hover:border-saffron transition-colors">
               <i data-lucide="circuit-board" class="w-3.5 h-3.5"></i>
@@ -284,13 +312,13 @@
             <span class="font-mono text-[9px] text-copper/80 bg-obsidian px-1.5 py-0.5 rounded border border-copper-border/30">01 // AVIONICS</span>
           </div>
           <h3 class="text-xs font-bold text-white mb-1 tracking-tight">UAV Avionics</h3>
-          <p class="text-instrument-slate text-[11px] leading-relaxed line-clamp-2">
+          <p class="text-instrument-slate text-[11px] leading-relaxed">
             STM32H7 flight computers, GaN ESCs, encrypted micro-telemetry.
           </p>
         </div>
 
         <!-- Card 2 -->
-        <div class="spotlight-card border border-copper-border rounded-xl p-3.5 relative group overflow-hidden">
+        <div class="spotlight-card border border-copper-border rounded-xl p-3 sm:p-3.5 relative group overflow-hidden">
           <div class="flex items-center justify-between mb-2">
             <div class="w-7 h-7 rounded-lg bg-obsidian border border-copper-border flex items-center justify-center text-copper group-hover:border-copper transition-colors">
               <i data-lucide="layers" class="w-3.5 h-3.5"></i>
@@ -298,13 +326,13 @@
             <span class="font-mono text-[9px] text-copper/80 bg-obsidian px-1.5 py-0.5 rounded border border-copper-border/30">02 // AERO</span>
           </div>
           <h3 class="text-xs font-bold text-white mb-1 tracking-tight">CAD &amp; Structures</h3>
-          <p class="text-instrument-slate text-[11px] leading-relaxed line-clamp-2">
+          <p class="text-instrument-slate text-[11px] leading-relaxed">
             Topology-optimized carbon-composite modular airframes.
           </p>
         </div>
 
         <!-- Card 3 -->
-        <div class="spotlight-card border border-copper-border rounded-xl p-3.5 relative group overflow-hidden">
+        <div class="spotlight-card border border-copper-border rounded-xl p-3 sm:p-3.5 relative group overflow-hidden">
           <div class="flex items-center justify-between mb-2">
             <div class="w-7 h-7 rounded-lg bg-obsidian border border-copper-border flex items-center justify-center text-saffron group-hover:border-saffron transition-colors">
               <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
@@ -312,7 +340,7 @@
             <span class="font-mono text-[9px] text-saffron/80 bg-obsidian px-1.5 py-0.5 rounded border border-saffron/30">03 // AI-EDA</span>
           </div>
           <h3 class="text-xs font-bold text-white mb-1 tracking-tight">Circute.ai</h3>
-          <p class="text-instrument-slate text-[11px] leading-relaxed line-clamp-2">
+          <p class="text-instrument-slate text-[11px] leading-relaxed">
             Natural language to schematics, auto-routing &amp; Gerber exports.
           </p>
         </div>
@@ -322,8 +350,8 @@
     </div>
 
     <!-- Sovereign Trust Footer (No Names) -->
-    <footer class="w-full border-t border-copper-border/40 pt-3 pb-1 flex items-center justify-between text-[11px] font-mono text-instrument-slate">
-      <div class="flex items-center gap-2">
+    <footer class="w-full border-t border-copper-border/40 pt-4 pb-3 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-[11px] font-mono text-instrument-slate text-center sm:text-left mt-6 sm:mt-auto">
+      <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
         <span class="text-white font-medium">Make in India 🇮🇳</span>
         <span>•</span>
         <span>100% Sovereign IP</span>
