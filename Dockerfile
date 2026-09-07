@@ -14,8 +14,8 @@ COPY assets/ /usr/share/nginx/html/assets/
 # Expose HTTP port for Coolify reverse proxy
 EXPOSE 80
 
-# Healthcheck for Coolify monitoring
-HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
-  CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+# Healthcheck for Coolify monitoring and Docker container health
+HEALTHCHECK --interval=15s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget --quiet --tries=1 --spider http://127.0.0.1/healthz || exit 1
 
 CMD ["nginx", "-g", "daemon off;"]

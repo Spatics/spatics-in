@@ -31,11 +31,17 @@ This repository is pre-configured for zero-config deployment on **[Coolify](http
    - If prompted for Build Pack, select **Dockerfile**.
    - Port: `80` (pre-configured).
 
-3. **Domain & SSL**:
+3. **Health Check**:
+   - Docker Container Healthcheck is pre-configured in the Dockerfile using `/healthz`.
+   - In Coolify Application Settings -> **Health Check**:
+     - **Health Check Path**: `/healthz` (returns `200 OK`) or `/health` (returns JSON status).
+     - **Port**: `80`
+
+4. **Domain & SSL**:
    - Set your domain in Coolify (e.g. `https://spatics.in` or `https://www.spatics.in`).
    - Coolify will automatically provision free Let's Encrypt SSL certificates.
 
-4. **Deploy**:
+5. **Deploy**:
    - Click **Deploy**.
    - The Nginx Alpine container will build and serve instantly with automatic caching and gzip compression.
 
