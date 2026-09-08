@@ -1,8 +1,8 @@
-# SPATICS™ — Sovereign Autonomous Flight Stack
+# SPATICS™ — Sovereign UAV Ancillary Providers
 
 Official coming-soon landing page for **SPATICS Technologies** ([spatics.in](https://spatics.in)).
 
-Engineering India’s Sovereign Autonomous Flight Stack: Indigenous UAV avionics, carbon-composite aerostructures, and Circute.ai (conversational AI-EDA).
+Engineering India’s Sovereign UAV Ancillary Providers: Indigenous UAV avionics, carbon-composite aerostructures, and Circute.ai (conversational AI-EDA).
 
 ---
 
