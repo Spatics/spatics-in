@@ -1,8 +1,8 @@
-# SPATICS™ — Sovereign UAV Ancillary Providers
+# SPATICS™ — Bharat’s Sovereign UAV Ancillary Provider
 
 Official coming-soon landing page for **SPATICS Technologies** ([spatics.in](https://spatics.in)).
 
-Engineering India’s Sovereign UAV Ancillary Providers: Indigenous UAV avionics, carbon-composite aerostructures, and Circute.ai (conversational AI-EDA).
+Bharat’s Sovereign UAV Ancillary Provider: Indigenous UAV avionics, carbon-composite aerostructures, and Circute.ai (conversational AI-EDA).
 
 ---
 
