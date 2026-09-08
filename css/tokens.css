@@ -1,0 +1,128 @@
+/* ---------------------------------------------------------------------------
+   tokens.css — every colour, weave gradient and measure on the page.
+   Light values live in :root; dark mode ("indigo-black cloth") re-declares the
+   SAME custom properties on html[data-theme="dark"] and nothing else, so no
+   component rule ever needs a dark variant.
+   --------------------------------------------------------------------------- */
+
+:root{
+  /* --- palette (light: undyed khadi) --- */
+  --khadi:    #E7DFCE;  /* page ground */
+  --pressed:  #F2EBDC;  /* nav, cards, selvedge, footer: pressed sheet */
+  --swatch:   #CDC3AE;  /* image plates */
+  --slub:     #B8A98C;  /* undyed thread: weave gradients and the button foot */
+  /* --line is the UI boundary colour, split out from --slub. --slub is a thread
+     tone and only reaches 1.74:1 on khadi, so every control whose entire
+     boundary is that hairline (input, tab, toggle, pill, footer link) failed
+     WCAG 1.4.11 Non-text Contrast. --line clears 3:1 on both grounds. */
+  --line:     #8A7B5C;  /* input, tab, toggle, pill and footer-link borders */
+  --ink:      #16143C;  /* headings and strong text */
+  --ink-soft: #3B3757;  /* lede, descriptions, captions */
+  --indigo:   #1800C0;  /* links, card titles, focus ring */
+  --cta:      #1800C0;  /* button fill */
+  --cta-hover:#2A19D4;
+  --cta-text: #F2EBDC;  /* text on the button fill */
+  --saffron:  #F89830;  /* thread only, never text */
+  --green:    #008000;  /* thread only, never text */
+
+  /* --- hairlines, derived from ink so dark can flip them to light --- */
+  --hair:        rgba(22,20,60,.10);  /* band edges, nav/footer rules */
+  --hair-strong: rgba(22,20,60,.14);  /* card and plate borders */
+  --hair-hover:  rgba(24,0,192,.40);  /* card border on hover */
+  --dotted:      rgba(22,20,60,.22);  /* dotted rules between capability lines */
+
+  /* --- the loom: v1's four-gradient handloom texture on the body ---
+     warp (fine 4px), weft (fine 5px), then a coarser slub pair at 27/31px
+     that breaks the grid so it never reads as graph paper. */
+  --loom:
+    repeating-linear-gradient(90deg, rgba(88,70,42,.050) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(0deg,  rgba(88,70,42,.038) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(90deg, rgba(120,96,58,.030) 0 2px, transparent 2px 27px),
+    repeating-linear-gradient(0deg,  rgba(120,96,58,.022) 0 2px, transparent 2px 31px);
+
+  /* --- the weave: one warp unit is 10px — 3px saffron, 3px green, 1px slub ---
+     -h for horizontal bands, -v for the vertical selvedge. */
+  --warp-h: repeating-linear-gradient(180deg,
+      var(--saffron) 0 3px, transparent 3px 4px,
+      var(--green)   4px 7px, transparent 7px 8px,
+      var(--slub)    8px 9px, transparent 9px 10px);
+  --warp-v: repeating-linear-gradient(90deg,
+      var(--saffron) 0 3px, transparent 3px 4px,
+      var(--green)   4px 7px, transparent 7px 8px,
+      var(--slub)    8px 9px, transparent 9px 10px);
+  /* the button foot is only 8px tall, so its warp is re-balanced to
+     3 saffron / 2 undyed / 3 green — otherwise the tricolour collapses at 1x. */
+  --warp-foot: repeating-linear-gradient(180deg,
+      var(--saffron) 0 3px, var(--slub) 3px 5px, var(--green) 5px 8px);
+
+  /* weft ticks stay light in both themes: they are the shine on the thread */
+  --weft:      repeating-linear-gradient(90deg,  rgba(255,252,244,.22) 0 1px, transparent 1px 5px);
+  --weft-soft: repeating-linear-gradient(90deg,  rgba(255,252,244,.30) 0 1px, transparent 1px 6px);
+  --weft-v:    repeating-linear-gradient(180deg, rgba(255,252,244,.22) 0 1px, transparent 1px 5px);
+  /* Pressed cloth laid over the threads, so the tricolour sits IN the weave.
+     v3 used .50, which washed the selvedge and hem to pastel while the bare
+     bands stayed vivid: two different cloths on one page. .28 keeps the sized
+     weave a shade softer than the bands without losing the hue. */
+  --sizing: linear-gradient(rgba(242,235,220,.28), rgba(242,235,220,.28));
+
+  /* the logo plate: light mode has none, dark mode sets a pressed-khadi chip
+     behind the full-colour wordmark so the indigo letters still read */
+  --plate-bg:  transparent;
+  --plate-pad: 0;
+
+  /* the theme toggle shows one icon at a time. Driven by tokens so dark mode
+     stays a pure custom-property override and touches no component selector. */
+  --sun-display:  none;
+  --moon-display: block;
+
+  /* --- geometry --- */
+  --selvedge: 30px;
+  --measure:  1180px;
+  --gutter:   48px;
+}
+
+html[data-theme="dark"]{
+  /* indigo-black cloth: the same handloom, dyed */
+  --khadi:    #16143C;
+  --pressed:  #1D1A4C;
+  --swatch:   #2B2760;
+  --slub:     #6B648E;
+  /* lifted off the brief's #6B648E so the controls it outlines clear 3:1 */
+  --line:     #7A72A0;
+  --ink:      #EDE6D6;
+  --ink-soft: #C8C0AC;
+  --indigo:   #A9A0FF;
+  --cta:      #5B4BFF;
+  /* brief suggests a lighter #6E60FF hover, but that drops the button label to
+     3.7:1; the hover deepens instead and keeps 5.6:1 */
+  --cta-hover:#4C3AF0;
+  --cta-text: #F2EBDC;
+
+  --hair:        rgba(237,230,214,.14);
+  --hair-strong: rgba(237,230,214,.18);
+  --hair-hover:  rgba(169,160,255,.55);
+  --dotted:      rgba(237,230,214,.26);
+
+  /* same pitches, light thread */
+  --loom:
+    repeating-linear-gradient(90deg, rgba(255,250,235,.045) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(0deg,  rgba(255,250,235,.034) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(90deg, rgba(255,250,235,.028) 0 2px, transparent 2px 27px),
+    repeating-linear-gradient(0deg,  rgba(255,250,235,.020) 0 2px, transparent 2px 31px);
+
+  /* the weft tick stays light thread, but at a fraction of the light-mode alpha:
+     the same .22/.30 over indigo-black reads as hard white striping */
+  --weft:      repeating-linear-gradient(90deg,  rgba(255,250,235,.10) 0 1px, transparent 1px 5px);
+  --weft-soft: repeating-linear-gradient(90deg,  rgba(255,250,235,.07) 0 1px, transparent 1px 6px);
+  --weft-v:    repeating-linear-gradient(180deg, rgba(255,250,235,.10) 0 1px, transparent 1px 5px);
+
+  /* the sizing wash follows the dark pressed tone. At .50 the selvedge and hem
+     went brown corduroy; .22 keeps them saffron and green, just quieter. */
+  --sizing: linear-gradient(rgba(29,26,76,.22), rgba(29,26,76,.22));
+
+  --plate-bg:  #F2EBDC;
+  --plate-pad: 6px 10px;
+
+  --sun-display:  block;
+  --moon-display: none;
+}

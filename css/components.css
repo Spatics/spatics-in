@@ -1,0 +1,178 @@
+/* ---------------------------------------------------------------------------
+   components.css — the reusable pieces of cloth:
+   page/wrap measure, selvedge, woven band and hem, buttons, cards, swatch
+   plates and their captions, the status pill, the access form, and the toggle.
+   --------------------------------------------------------------------------- */
+
+/* --- measure ---------------------------------------------------------------
+   The selvedge is fixed, so the page is pushed off the left edge by its width. */
+.page{margin-left:var(--selvedge)}
+.wrap{max-width:var(--measure);margin:0 auto;padding:0 var(--gutter)}
+
+/* --- selvedge: the finished woven edge of the cloth, full height ----------- */
+.selvedge{
+  position:fixed;inset:0 auto 0 0;width:var(--selvedge);z-index:5;
+  background-color:var(--pressed);
+  background-image:var(--weft-v),var(--sizing),var(--warp-v);
+  box-shadow:1px 0 0 var(--hair);
+}
+
+/* --- woven band: v1's section rule; --wide is the 20px variant ------------- */
+.band{
+  height:10px;
+  background-image:var(--weft),var(--warp-h);
+  border-top:1px solid var(--hair);
+  border-bottom:1px solid var(--hair);
+}
+.band--wide{height:20px}
+
+/* --- hem: v3's turned edge above the footer. Pressed ground under the
+   threads, so it reads as cloth folded rather than as a second rule. -------- */
+.hem{
+  height:20px;background-color:var(--pressed);
+  background-image:var(--weft),var(--sizing),var(--warp-h);
+}
+
+/* --- buttons ---------------------------------------------------------------
+   The small button is flat indigo. Only the large one carries the woven foot;
+   it is the single tricolour accent inside the content column. */
+.btn{
+  display:inline-block;border:0;cursor:pointer;
+  font-family:inherit;font-weight:500;font-size:15px;line-height:1.4;
+  color:var(--cta-text);background:var(--cta);
+  padding:11px 24px;border-radius:2px;
+}
+.btn:hover{background:var(--cta-hover)}
+.btn[disabled],.btn[aria-disabled="true"]{opacity:.6;cursor:default}
+
+.btn--lg{position:relative;font-size:17px;padding:16px 34px 26px}
+.btn--lg::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:8px;
+  background-color:var(--slub);
+  background-image:var(--weft),var(--warp-foot);
+}
+
+/* --- theme toggle: an icon button on the pressed nav ground ---------------- */
+.toggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;padding:0;cursor:pointer;
+  background:transparent;border:1px solid var(--line);border-radius:2px;
+  color:var(--ink);
+}
+.toggle:hover{border-color:var(--ink)}
+.toggle svg{width:19px;height:19px;display:block}
+/* one icon shows at a time: the moon in light (go dark), the sun in dark.
+   Both come from tokens, so dark mode stays a pure custom-property override. */
+.toggle .icon-sun{display:var(--sun-display)}
+.toggle .icon-moon{display:var(--moon-display)}
+
+/* --- logo plate ------------------------------------------------------------
+   Light: nothing. Dark: a small pressed-khadi chip so the indigo wordmark in
+   logo.svg still reads against the indigo-black cloth. Driven by tokens only. */
+.logo-plate{
+  display:inline-block;
+  background:var(--plate-bg);
+  padding:var(--plate-pad);
+  border-radius:2px;
+}
+
+/* --- status pill ----------------------------------------------------------- */
+.pill{
+  display:inline-flex;align-items:center;gap:9px;
+  background-color:var(--pressed);background-image:var(--weft-soft);
+  border:1px solid var(--line);border-radius:999px;
+  padding:5px 14px 5px 12px;
+}
+.dot{
+  width:7px;height:7px;border-radius:50%;background:var(--saffron);
+  flex:0 0 auto;
+}
+
+/* --- swatch plate (placeholder cloth) -------------------------------------- */
+.ph{
+  background:var(--swatch);
+  border:1px solid var(--hair-strong);
+  border-radius:2px;
+}
+.ph--card{height:140px}
+/* 13px sentence-case caption under every swatch plate */
+.cap{font-size:13px;line-height:1.5;color:var(--ink-soft);margin:10px 0 0}
+
+/* --- card: v1 exactly — pressed ground, woven top band, indigo title with a
+   two-line well so all three descriptions start on the same baseline. ------- */
+.card{
+  background-color:var(--pressed);background-image:var(--weft-soft);
+  border:1px solid var(--hair-strong);border-radius:2px;
+  padding:0 30px 32px;display:flex;flex-direction:column;
+}
+.card .band{margin:0 -31px 26px;border-top:0;border-radius:2px 2px 0 0}
+.card h3{min-height:2.5em;margin:0 0 12px;color:var(--indigo)}
+.card p{
+  font-family:"Halant",Georgia,"Times New Roman",serif;
+  margin:0 0 20px;font-size:17px;line-height:1.6;color:var(--ink-soft);
+}
+.card .plate{margin-top:auto}
+
+/* capability lines: a short coloured thread instead of a bullet, dotted rules
+   between. Saffron / undyed slub / green, in that order, once per card. */
+.caps{list-style:none;margin:0 0 26px;padding:0}
+.caps li{position:relative;padding-left:24px;font-size:15px;line-height:1.5;padding-bottom:10px}
+.caps li+li{border-top:1px dotted var(--dotted);padding-top:10px}
+.caps li::before{content:"";position:absolute;left:0;top:.7em;width:13px;height:2px;background:var(--saffron)}
+.caps li+li::before{top:calc(.7em + 10px)}
+.caps li:nth-child(2)::before{background:var(--slub)}
+.caps li:nth-child(3)::before{background:var(--green)}
+
+/* --- access form: a v1 card, 560px, with the woven top band --------------- */
+.access{
+  max-width:560px;
+  background-color:var(--pressed);background-image:var(--weft-soft);
+  border:1px solid var(--hair-strong);border-radius:2px;
+  padding:0 26px 26px;
+}
+.access .band{margin:0 -27px 24px;border-top:0;border-radius:2px 2px 0 0}
+.access form{display:flex;flex-direction:column;gap:16px}
+
+/* segmented radios: two flat tabs on khadi; the checked one lifts onto
+   pressed cloth with an ink border. No icons. */
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;border:0;margin:0;padding:0}
+.seg label{
+  display:block;text-align:center;cursor:pointer;
+  font-size:15px;line-height:1.4;color:var(--ink-soft);
+  background:var(--khadi);border:1px solid var(--line);border-radius:2px;
+  padding:9px 10px;
+}
+.seg input{position:absolute;opacity:0;width:0;height:0}
+.seg label:hover{color:var(--ink)}
+.seg label:has(:checked){
+  background-color:var(--pressed);background-image:var(--weft-soft);
+  border-color:var(--ink);color:var(--ink);font-weight:500;
+}
+
+.row{display:flex;gap:12px;align-items:stretch}
+.field{
+  flex:1;min-width:0;
+  font-family:inherit;font-size:15px;line-height:1.4;color:var(--ink);
+  background:var(--khadi);border:1px solid var(--line);border-radius:2px;
+  padding:12px 14px;
+}
+/* .8, not .75: at .75 the light placeholder lands on 4.49:1, just under AA */
+.field::placeholder{color:var(--ink-soft);opacity:.8}
+.field:focus{border-color:var(--ink);outline:none}
+.field:focus-visible{outline:3px solid var(--indigo);outline-offset:3px}
+.row .btn--lg{flex:0 0 auto}
+
+.foot-note{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  margin:0;font-size:13px;line-height:1.5;color:var(--ink-soft);
+}
+.err{margin:0;font-size:15px;color:var(--ink)}
+/* the empty alert region stays in the DOM; cancel the form's 16px flex gap so
+   it costs nothing until it has something to say */
+.err:empty{margin-top:-16px}
+.done h3{font-size:23px;margin:0 0 8px;color:var(--ink)}
+.done p{
+  font-family:"Halant",Georgia,"Times New Roman",serif;
+  margin:0;font-size:17px;line-height:1.6;color:var(--ink-soft);
+}
+[hidden]{display:none !important}

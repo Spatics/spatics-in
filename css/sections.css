@@ -1,0 +1,98 @@
+/* ---------------------------------------------------------------------------
+   sections.css — the page in order: nav, status row, hero, "what we build",
+   footer, and the one narrow breakpoint at 900px.
+   --------------------------------------------------------------------------- */
+
+/* --- nav: quiet, 84px, no border. It sits on pressed cloth, so the change of
+   ground does the dividing. Logo left, toggle and CTA right; no section links. */
+.nav{background:var(--pressed);background-image:var(--weft-soft)}
+.nav-inner{
+  max-width:var(--measure);margin:0 auto;padding:0 var(--gutter);height:84px;
+  display:flex;align-items:center;gap:18px;
+}
+.nav .logo{margin-right:auto;line-height:0}
+.nav .logo img{height:46px;width:auto}
+
+/* --- status row: the page's one deliberate uppercase/tracked moment --------
+   Kept to exactly these two elements; nothing else on the page is set this way. */
+.status{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;padding-top:26px;
+}
+.status,.status *{
+  font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  line-height:1.4;color:var(--ink-soft);
+}
+.status .pill span{color:var(--ink)}
+.clock{display:flex;align-items:center;gap:10px}
+.clock time{color:var(--ink)}
+
+/* --- hero ------------------------------------------------------------------ */
+.hero{padding-top:64px;padding-bottom:96px}
+/* The briefed 96px, paid for in tracking: at the inherited -.015em "UAV Ancillary
+   Provider" needs 1095px and the 1180 measure offers 1084, so it wrapped to a
+   third line. -.022em brings it to ~1080px and holds the two-line shape. The vw
+   term tracks the measure below 1440; the cap is reached at ~1392px and up. */
+.hero h1{font-size:clamp(48px,6.9vw,96px);letter-spacing:-.022em}
+.hero .lede{max-width:34em;margin:34px 0 0}
+.hero .access{margin-top:40px}
+
+/* --- what we build --------------------------------------------------------- */
+.build{padding-top:88px;padding-bottom:92px}
+/* v1's woven rule trailing the heading, filling the rest of the measure */
+.build h2{display:flex;align-items:center;gap:24px}
+.build h2::after{content:"";flex:1;height:8px;background-image:var(--weft),var(--warp-h)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:46px}
+
+/* --- footer ---------------------------------------------------------------- */
+footer{background-color:var(--pressed);background-image:var(--weft-soft);padding:46px 0 48px}
+.f-cols{display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+.f-logo{height:42px;width:auto}
+footer .logo-plate{margin-bottom:18px;line-height:0}
+footer p{margin:0 0 8px;font-size:15px;line-height:1.6;color:var(--ink-soft)}
+footer p:last-child{margin-bottom:0}
+.tm{font-size:13px}
+.f-links{
+  display:flex;gap:28px;list-style:none;margin:0;padding:0;
+  justify-content:flex-end;align-items:flex-start;
+}
+.f-links a{
+  font-size:15px;color:var(--ink);
+  border-bottom:1px solid var(--line);padding-bottom:2px;
+}
+.f-links a:hover{color:var(--indigo);border-bottom-color:var(--indigo)}
+
+/* --- narrow: one breakpoint, v3's pattern ---------------------------------- */
+@media (max-width:900px){
+  :root{--selvedge:14px;--gutter:20px}
+
+  /* grid, not wrapped flex: the logo owns its own row but keeps its box the
+     width of the mark, so the dark-mode plate behind it does not stretch */
+  .nav-inner{
+    display:grid;grid-template-columns:auto auto;justify-content:start;
+    align-items:center;height:auto;gap:14px;
+    padding-top:20px;padding-bottom:22px;
+  }
+  .nav .logo{margin-right:0;grid-column:1 / -1;justify-self:start}
+
+  .status{padding-top:22px;gap:12px}
+
+  .hero{padding-top:40px;padding-bottom:56px}
+  /* v3 drops to min(44px, 9.5vw); clamped at 40px so a 390 screen keeps the
+     display face rather than shrinking it to body size */
+  .hero h1{font-size:clamp(40px,9.5vw,44px);line-height:1.12;max-width:none}
+  .hero .lede{font-size:19px;margin-top:22px}
+  .hero .access{margin-top:30px}
+
+  .access .row{flex-direction:column}
+  .access .row .btn--lg{width:100%;text-align:center}
+
+  .build{padding-top:56px;padding-bottom:60px}
+  .build h2{gap:16px}
+  .cards{grid-template-columns:1fr;gap:22px;margin-top:32px}
+  .card h3{min-height:0}
+
+  footer{padding:36px 0 40px}
+  .f-cols{grid-template-columns:1fr;gap:26px}
+  .f-links{justify-content:flex-start;flex-wrap:wrap;gap:20px}
+}

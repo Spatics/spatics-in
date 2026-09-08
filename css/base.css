@@ -1,0 +1,87 @@
+/* ---------------------------------------------------------------------------
+   base.css — reset, the loom texture on the body, the type scale, links,
+   the focus ring, and the single prefers-reduced-motion gate that holds every
+   animation on the page.
+   --------------------------------------------------------------------------- */
+
+*{box-sizing:border-box}
+/* html carries the footer's ground: without it body's background propagates to
+   the canvas, and on a window taller than the document the page trails off into
+   bare khadi below the footer. */
+html{-webkit-text-size-adjust:100%;background-color:var(--pressed)}
+
+body{
+  margin:0;
+  color:var(--ink);
+  background-color:var(--khadi);
+  background-image:var(--loom);      /* handloom: warp, weft and a coarse slub */
+  font-family:"Yantramanav","Segoe UI",Arial,sans-serif;
+  font-weight:400;
+  font-size:17px;
+  line-height:1.65;
+}
+
+img{display:block;max-width:100%}
+
+a{color:var(--indigo);text-decoration:none}
+
+/* --- display and body faces -------------------------------------------------
+   Martel carries Devanagari metrics, so its line box is much taller than the
+   latin glyphs: every Martel rule states its own line-height. */
+h1{
+  font-family:"Martel",Georgia,"Times New Roman",serif;font-weight:800;
+  font-size:96px;line-height:1.06;letter-spacing:-.015em;
+  margin:0;color:var(--ink);
+}
+h2{
+  font-family:"Martel",Georgia,"Times New Roman",serif;font-weight:700;
+  font-size:30px;line-height:1.25;letter-spacing:-.01em;margin:0;color:var(--ink);
+}
+h3{
+  font-family:"Martel",Georgia,"Times New Roman",serif;font-weight:700;
+  font-size:23px;line-height:1.25;margin:0;
+}
+
+.lede{
+  font-family:"Halant",Georgia,"Times New Roman",serif;font-weight:400;
+  font-size:22px;line-height:1.55;color:var(--ink-soft);
+}
+
+/* --- focus: one visible ring on everything interactive --------------------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.seg label:has(:focus-visible){
+  outline:3px solid var(--indigo);outline-offset:3px;border-radius:1px;
+}
+
+/* --- motion ---------------------------------------------------------------
+   Everything that moves lives in here and nowhere else. */
+@media (prefers-reduced-motion: no-preference){
+  /* v3 rise reveal, staggered down the hero */
+  .reveal{animation:rise .7s cubic-bezier(.22,.7,.3,1) both}
+  .reveal-2{animation-delay:.10s}
+  .reveal-3{animation-delay:.20s}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  /* v1 shuttle pass: on load the weft slides into place. The pattern moves,
+     never the box, so the band is never caught half-drawn. */
+  .band{animation:shuttle 1.1s cubic-bezier(.3,.8,.3,1) both}
+  @keyframes shuttle{from{background-position:-56px 0, 0 0}to{background-position:0 0, 0 0}}
+
+  /* the shuttle nudge under the one large button */
+  .btn--lg::after{transition:transform .45s ease}
+  .btn--lg:hover::after{transform:translateX(4px)}
+
+  .card{transition:border-color .25s ease, transform .25s ease}
+  .card:hover{border-color:var(--hair-hover);transform:translateY(-3px)}
+
+  /* colour transitions: the theme flip is a paint, not a move, but it is gated
+     here anyway so a reduced-motion user gets an instant swap */
+  .btn,.toggle,.f-links a,.seg label,.field{
+    transition:background-color .2s ease,color .2s ease,border-color .2s ease;
+  }
+
+  .dot{animation:pulse 1.9s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+}
